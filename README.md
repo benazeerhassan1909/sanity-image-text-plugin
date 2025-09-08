@@ -185,9 +185,9 @@ Description... |
 
 ## 📷 Screenshots
 
-Backend Settings: https://share.cleanshot.com/mfSSvb0FXGR7TmVspQSM
-Frontend Output Image Left: https://share.cleanshot.com/jV7DnbbKvw3bmTsWXDNB
-Frontend Output Image Right: https://share.cleanshot.com/Dqkrdrd2ywkLCkzzwFCS
+Backend Settings: https://share.cleanshot.com/mfSSvb0FXGR7TmVspQSM 
+Frontend Output Image Left: https://share.cleanshot.com/jV7DnbbKvw3bmTsWXDNB 
+Frontend Output Image Right: https://share.cleanshot.com/Dqkrdrd2ywkLCkzzwFCS 
 
 ### Studio Interface
 ![Studio Interface](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/backend-settings.jpeg)

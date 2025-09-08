@@ -4,16 +4,13 @@ By **Multidots**
 
 A Sanity Studio v3+ plugin for creating image and text combination blocks with flexible positioning and styling.
 
-[![npm version](https://badge.fury.io/js/@multidots%2Fsanity-plugin-image-text-block.svg)](https://badge.fury.io/js/@multidots%2Fsanity-plugin-image-text-block)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://img.shields.io/npm/dm/@multidots/sanity-plugin-image-text-block.svg)](https://npmjs.com/package/@multidots/sanity-plugin-image-text-block)
 
 ## 🚀 Features
 
 - ✅ **Image Positioning** - Left or right side positioning
 - ✅ **Rich Content** - Title, subtitle, and rich text descriptions  
 - ✅ **Custom Buttons** - Call-to-action buttons with custom styling
-- ✅ **Color Customization** - Background, text, image background, and button colors
+- ✅ **Color Customization** - Background, text, and button colors
 - ✅ **Content Alignment** - Top or center alignment options
 - ✅ **Responsive Design** - Works on all device sizes
 - ✅ **SSR Safe** - No hydration errors
@@ -60,19 +57,14 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'content',
-      title: 'Page Content',
-      type: 'array',
-      of: [
-        { type: 'ImageTextBlockType' },
-        // ... other block types
-      ],
-    }),
+            name: "imageTextBlock",
+            type: "ImageTextBlockType",
+        }),
   ],
 })
 ```
 
-## ⚛️ Frontend Usage (Next.js)
+## ⚛️ Frontend Usage Example (Next.js)
 
 ### Basic Implementation
 
@@ -103,7 +95,6 @@ export default function Page({ pageData }) {
               imagePosition={block.imagePosition}
               button={block.button}
               backgroundColor={block.backgroundColor}
-              imageBackgroundColor={block.imageBackgroundColor}
               textColor={block.textColor}
               contentAlignment={block.contentAlignment}
               sanityClient={sanityClient}
@@ -117,7 +108,7 @@ export default function Page({ pageData }) {
 }
 ```
 
-### With Custom Styling
+### With Custom Styling Example
 
 ```tsx
 import { ImageTextBlock } from '@multidots/sanity-plugin-image-text-block'
@@ -141,7 +132,7 @@ function CustomImageTextBlock(props) {
 }
 ```
 
-### Environment Variables (.env.local)
+### Environment Variables Example (.env.local)
 
 ```bash
 NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
@@ -156,13 +147,14 @@ NEXT_PUBLIC_SANITY_DATASET=production
 - **Title** - Main heading text
 - **Subtitle** - Secondary heading text
 - **Description** - Rich text content with formatting options
+
+#### Image Fields
 - **Main Image** - Image upload with alt text support
-- **Image Position** - Choose left or right positioning
-- **Content Alignment** - Top or center vertical alignment
 
 #### Styling Options  
+- **Image Position** - Choose left or right positioning
+- **Content Alignment** - Top or center vertical alignment
 - **Background Color** - Content area background color picker
-- **Image Background Color** - Image area background color picker  
 - **Text Color** - Universal text color for all content
 
 #### Button Configuration
@@ -172,14 +164,6 @@ NEXT_PUBLIC_SANITY_DATASET=production
 - **Button Background Color** - Custom button background
 - **Button Text Color** - Custom button text color
 
-### Studio Interface
-
-*Note: The plugin provides an intuitive interface in Sanity Studio with:*
-- Visual color pickers for all color options
-- Image upload with drag-and-drop support
-- Rich text editor for descriptions
-- Toggle options for positioning and alignment
-- Real-time preview of settings
 
 ### Frontend Output Examples
 
@@ -198,6 +182,14 @@ Subtitle       |
 Description... |
 [Button]       |
 ```
+
+## 📷 Screenshots
+
+### Studio Interface
+![Studio Interface](./studio-interface.png)
+### Frontend Output
+![Frontend Output Image Left](./image-left.png)
+![Frontend Output Image Right](./image-right.png)
 
 ## 🐛 Troubleshooting
 
@@ -234,27 +226,6 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 ❌ example.com (missing protocol)
 ```
 
-### Colors not applying
-**Problem:** Custom colors not showing in frontend
-**Solution:** Check that color values are in the correct format:
-```tsx
-// Correct format
-backgroundColor={{ hex: '#ffffff' }}
-
-// Incorrect format  
-backgroundColor="#ffffff"
-```
-
-### Responsive issues
-**Problem:** Layout breaks on mobile
-**Solution:** The plugin is responsive by default, but ensure your container has proper CSS:
-```css
-.page-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-```
 
 ## 📤 Exports
 
@@ -283,9 +254,6 @@ interface ImageTextBlockProps {
   }
   imagePosition?: 'left' | 'right'
   backgroundColor?: {
-    hex: string
-  }
-  imageBackgroundColor?: {
     hex: string
   }
   textColor?: {
@@ -321,6 +289,14 @@ import ImageTextBlockPlugin from '@multidots/sanity-plugin-image-text-block'
 
 ---
 
+## Develop & test
+This plugin uses @sanity/plugin-kit for build & watch scripts.
+
+Local development tips:
+
+- npm run link-watch or npm run watch to develop against a local Studio
+- Publish with npm publish (build runs on prepublishOnly)
+
 ## Contributor
 
 ### Multidots
@@ -341,5 +317,3 @@ Multidots is located at Austin, Texas, US
 ## 📄 License
 
 [MIT](LICENSE) © [Multidots](https://multidots.com)
-
-**Made with ❤️ by [Multidots](https://multidots.com)**

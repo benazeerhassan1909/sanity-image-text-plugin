@@ -186,10 +186,10 @@ Description... |
 ## 📷 Screenshots
 
 ### Studio Interface
-![Studio Interface](./studio-interface.png)
+![Studio Interface](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/studio-interface.png)
 ### Frontend Output
-![Frontend Output Image Left](./image-left.png)
-![Frontend Output Image Right](./image-right.png)
+![Frontend Output Image Left](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/image-left.png)
+![Frontend Output Image Right](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/image-right.png)
 
 ## 🐛 Troubleshooting
 

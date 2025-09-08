@@ -307,16 +307,7 @@ Local development tips:
 
 ### Multidots
 
-**Enterprise Web Agency · Inc. 5000 Company**
-
-Multidots is located at Austin, Texas, US
-
 [Visit Multidots's profile](https://multidots.com)
-
-## Useful links
-
-* [NPM](https://www.npmjs.com/package/@multidots/sanity-plugin-image-text-block)
-* [GitHub](https://github.com/multidots/sanity-plugin-image-text-block)
 
 ---
 

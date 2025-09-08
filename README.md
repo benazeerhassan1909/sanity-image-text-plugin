@@ -186,7 +186,7 @@ Description... |
 ## 📷 Screenshots
 
 ### Studio Interface
-![Studio Interface](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/studio-interface.png)
+![Studio Interface](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/backend-settings.jpeg)
 ### Frontend Output
 ![Frontend Output Image Left](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/image-left.png)
 ![Frontend Output Image Right](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/image-right.png)

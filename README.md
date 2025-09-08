@@ -65,73 +65,134 @@ export default defineType({
 
 ## ⚛️ Frontend Usage Example (Next.js)
 
-### Basic Implementation
+### 1. Add Field to Your Query
+
+First, add the `imageTextBlock` field to your page or post query:
 
 ```tsx
-// pages/[slug].tsx or app/[slug]/page.tsx
-import { ImageTextBlock } from '@multidots/sanity-plugin-image-text-block'
-import { createClient } from '@sanity/client'
+// lib/sanity/queries.ts
+export const getPageQuery = defineQuery(`
+  *[_type == 'page' && slug.current == $slug][0]{
+    _id,
+    _type,
+    name,
+    slug,
+    imageTextBlock,
+  }
+`);
+```
 
-const sanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  useCdn: true,
-  apiVersion: '2023-05-03',
-})
+### 2. Create ImageText Wrapper Component
 
-export default function Page({ pageData }) {
+Create a wrapper component to handle the data transformation:
+
+```tsx
+// components/ImageText.tsx
+'use client'
+
+import { ImageTextBlock } from "@multidots/sanity-plugin-image-text-block"
+import { PortableTextBlock } from "sanity"
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { client } from '@/lib/sanity/client/client'
+
+interface ImageTextProps {
+    title?: string
+    subTitle?: string
+    description?: PortableTextBlock[] | string | null
+    mainImage?: SanityImageSource
+    imagePosition?: "left" | "right"
+    backgroundColor?: {
+        hex: string
+    }
+    textColor?: {
+        hex: string
+    }
+    contentAlignment?: 'top' | 'center'
+    button?: {
+        text?: string
+        link?: string
+        openInNewTab?: boolean
+        buttonBackgroundColor?: {
+            hex: string
+        }
+        buttonTextColor?: {
+            hex: string
+        }
+    }
+}
+
+function portableTextToPlainText(value: PortableTextBlock[] | string | null | undefined): string {
+    if (!value) return ''
+    if (typeof value === 'string') return value
+    try {
+        return value
+            .map(block => {
+                if (block?._type !== 'block' || !('children' in block)) return ''
+                // @ts-expect-error: children exists on block content
+                return (block.children || []).map((child: any) => child.text).join('')
+            })
+            .join('\n')
+    } catch {
+        return ''
+    }
+}
+
+export const ImageText = ({ mainImage, title, subTitle, description, imagePosition, button, backgroundColor, textColor, contentAlignment }: ImageTextProps) => {
+    const descriptionText = portableTextToPlainText(description)
+    const normalizedButton = {
+        text: button?.text ?? '',
+        link: button?.link ?? '',
+        openInNewTab: button?.openInNewTab ?? false,
+        buttonBackgroundColor: button?.buttonBackgroundColor ?? { hex: '#667eea' },
+        buttonTextColor: button?.buttonTextColor ?? { hex: '#ffffff' },
+        }
+    return (
+        <ImageTextBlock
+            title={title || ''}
+            subTitle={subTitle || ''}
+            description={descriptionText}
+            mainImage={mainImage}
+            imagePosition={imagePosition}
+            button={normalizedButton}
+            backgroundColor={backgroundColor}
+            textColor={textColor}
+            contentAlignment={contentAlignment}
+            sanityClient={client}
+        />
+    )
+}
+```
+
+### 3. Use in Your Page Component
+
+```tsx
+// app/[slug]/page.tsx
+import { ImageText } from "@/components/ImageText";
+
+export default function Page({ page }) {
   return (
     <main>
-      {pageData.content?.map((block, index) => {
-        if (block._type === 'ImageTextBlockType') {
-          return (
-            <ImageTextBlock
-              key={index}
-              title={block.title}
-              subTitle={block.subTitle}
-              description={block.description}
-              mainImage={block.mainImage}
-              imagePosition={block.imagePosition}
-              button={block.button}
-              backgroundColor={block.backgroundColor}
-              textColor={block.textColor}
-              contentAlignment={block.contentAlignment}
-              sanityClient={sanityClient}
-            />
-          )
-        }
-        return null
-      })}
+      {page?.imageTextBlock && (
+        <ImageText
+          title={page.imageTextBlock.title}
+          subTitle={page.imageTextBlock.subTitle}
+          description={page.imageTextBlock.description}
+          mainImage={page.imageTextBlock.mainImage}
+          imagePosition={page.imageTextBlock.imagePosition}
+          button={page.imageTextBlock.button}
+          backgroundColor={page.imageTextBlock.backgroundColor?.hex ? { hex: page.imageTextBlock.backgroundColor.hex } : undefined}
+          textColor={page.imageTextBlock.textColor?.hex ? { hex: page.imageTextBlock.textColor.hex } : undefined}
+          contentAlignment={page.imageTextBlock.contentAlignment}
+        />
+      )}
     </main>
   )
 }
 ```
 
-### With Custom Styling Example
+### 4. Environment Variables (.env.local)
 
-```tsx
-import { ImageTextBlock } from '@multidots/sanity-plugin-image-text-block'
-
-// Custom wrapper component
-function CustomImageTextBlock(props) {
-  return (
-    <div className="my-custom-wrapper">
-      <ImageTextBlock
-        {...props}
-        backgroundColor={{ hex: '#f8f9fa' }}
-        textColor={{ hex: '#333333' }}
-        button={{
-          ...props.button,
-          buttonBackgroundColor: { hex: '#007bff' },
-          buttonTextColor: { hex: '#ffffff' }
-        }}
-      />
-    </div>
-  )
-}
-```
-
-### Environment Variables Example (.env.local)
+Make sure to set up your environment variables:
 
 ```bash
 NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id

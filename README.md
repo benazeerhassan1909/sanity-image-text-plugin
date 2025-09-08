@@ -13,7 +13,6 @@ A Sanity Studio v3+ plugin for creating image and text combination blocks with f
 - ✅ **Color Customization** - Background, text, and button colors
 - ✅ **Content Alignment** - Top or center alignment options
 - ✅ **Responsive Design** - Works on all device sizes
-- ✅ **SSR Safe** - No hydration errors
 - ✅ **TypeScript Support** - Fully typed
 
 ## 📦 Installation
@@ -207,20 +206,6 @@ Frontend Output Image Right: https://share.cleanshot.com/Dqkrdrd2ywkLCkzzwFCS
   {...blockData} 
   sanityClient={sanityClient} 
 />
-```
-
-### Hydration mismatch errors
-**Problem:** Next.js hydration errors in development
-**Solution:** Update to the latest version:
-```bash
-npm update @multidots/sanity-plugin-image-text-block
-```
-
-### TypeScript errors
-**Problem:** Type errors when using the component
-**Solution:** Import proper types:
-```tsx
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 ```
 
 ### Button links not working

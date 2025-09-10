@@ -259,7 +259,7 @@ Frontend Output Image Right: https://share.cleanshot.com/Dqkrdrd2ywkLCkzzwFCS
 
 ## Demo Video
 
-[![Demo Video]](https://share.cleanshot.com/w0xnp7mbGV72Y7K7tYvW)
+https://share.cleanshot.com/w0xnp7mbGV72Y7K7tYvW
 
 
 ## 🐛 Troubleshooting

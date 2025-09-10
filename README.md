@@ -257,6 +257,11 @@ Frontend Output Image Right: https://share.cleanshot.com/Dqkrdrd2ywkLCkzzwFCS
 ![Frontend Output Image Left](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/image-left.png)
 ![Frontend Output Image Right](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/image-right.png)
 
+## Demo Video
+
+[![Demo Video](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/Image-Text-Block-Plugin.mp4)](https://github.com/benazeerhassan1909/sanity-image-text-plugin/blob/main/public/Image-Text-Block-Plugin.mp4)
+
+
 ## 🐛 Troubleshooting
 
 ### Images not displaying
